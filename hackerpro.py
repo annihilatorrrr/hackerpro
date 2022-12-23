@@ -75,8 +75,8 @@ directories = ['/uploads/', '/upload/', '/files/', '/resume/', '/resumes/', '/do
 shells = ['wso.php', 'shell.php', 'an.php', 'hacker.php', 'lol.php', 'up.php', 'cp.php', 'upload.php',
           'sh.php', 'pk.php', 'mad.php', 'x00x.php', 'worm.php', '1337worm.php', 'config.php', 'x.php', 'haha.php']
 upload = []
-yes = set(['yes', 'y', 'ye', 'Y'])
-no = set(['no', 'n'])
+yes = {'yes', 'y', 'ye', 'Y'}
+no = {'no', 'n'}
 
 
 def logo():
@@ -162,7 +162,7 @@ def doork():
         os.system("git clone https://github.com/AeonDave/doork")
         clearScr()
         doorkt = raw_input("Target : ")
-        os.system("cd doork && python doork.py -t %s -o log.log" % doorkt)
+        os.system(f"cd doork && python doork.py -t {doorkt} -o log.log")
 
 
 def postexp():
@@ -218,7 +218,7 @@ def brutex():
     os.system("git clone https://github.com/1N3/BruteX.git")
     clearScr()
     brutexchoice = raw_input("Select a Target : ")
-    os.system("cd BruteX && chmod 777 brutex && ./brutex %s" % brutexchoice)
+    os.system(f"cd BruteX && chmod 777 brutex && ./brutex {brutexchoice}")
 
 
 def arachni():
@@ -233,7 +233,7 @@ def arachni():
             "cd arachni && sudo gem install bundler && bundle install --without prof && rake install")
         os.system("archani")
     clearScr()
-    os.system("cd arachni/bin && chmod 777 arachni && ./arachni %s" % tara)
+    os.system(f"cd arachni/bin && chmod 777 arachni && ./arachni {tara}")
 
 
 def XSStrike():
@@ -257,10 +257,7 @@ def weeman():
     if choicewee in yes:
         os.system(
             "git clone https://github.com/samyoyo/weeman.git && cd weeman && python weeman.py")
-    if choicewee in no:
-        menu()
-    else:
-        menu()
+    menu()
 
 
 def gabriel():
@@ -269,7 +266,7 @@ def gabriel():
     clearScr()
     os.system("python gabriel.py")
     ftpbypass = raw_input("Enter Target IP and Use Command :")
-    os.system("python gabriel.py %s" % ftpbypass)
+    os.system(f"python gabriel.py {ftpbypass}")
 
 
 def sitechecker():
@@ -287,7 +284,7 @@ def h2ip():
 def ports():
     clearScr()
     target = raw_input('Select a Target IP : ')
-    os.system("nmap -O -Pn %s" % target)
+    os.system(f"nmap -O -Pn {target}")
     sys.exit()
 
 
@@ -310,7 +307,7 @@ def bsqlbf():
     print("This tool will only work on blind sql injection")
     cbsq = raw_input("select target : ")
     os.system("wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/bsqlbf-v2/bsqlbf-v2-7.pl -o bsqlbf.pl")
-    os.system("perl bsqlbf.pl -url %s" % cbsq)
+    os.system(f"perl bsqlbf.pl -url {cbsq}")
     os.system("rm bsqlbf.pl")
 
 
@@ -409,10 +406,6 @@ def webhack():
     if choiceweb == "12":
         clearScr()
         arachni()
-    elif choiceweb == "99":
-        menu()
-    elif choiceweb == "":
-        menu()
     else:
         menu()
 
@@ -427,7 +420,7 @@ def joomlarce():
     clearScr()
     print("if the response is 200 , you will find your shell in Joomla_3.5_Shell.txt")
     jmtarget = raw_input("Select a targets list :")
-    os.system("python temp.py %s" % jmtarget)
+    os.system(f"python temp.py {jmtarget}")
 
 
 def inurl():
@@ -437,8 +430,6 @@ def inurl():
         "./inurlbr.php --dork '{0}' -s {1}.txt -q 1,6 -t 1".format(dork, output))
     if cinurl in no:
         insinurl()
-    elif cinurl == "":
-        menu()
     else:
         menu()
 
@@ -460,8 +451,6 @@ def nmap():
         os.system("cd nmap && ./configure && make && make install")
     elif choice7 in no:
         info()
-    elif choice7 == "":
-        menu()
     else:
         menu()
 
@@ -481,8 +470,6 @@ def jboss():
     elif choice9 in no:
         os.system('clear')
         exp()
-    elif choice9 == "":
-        menu()
     else:
         menu()
 
@@ -530,8 +517,6 @@ def sqlmap():
     elif choice8 in no:
         os.system('clear')
         info()
-    elif choice8 == "":
-        menu()
     else:
         menu()
 
@@ -580,8 +565,6 @@ def poet():
     if choicepoet in no:
         clearScr()
         postexp()
-    elif choicepoet == "":
-        menu()
     else:
         menu()
 
@@ -601,8 +584,6 @@ def setoolkit():
     if choiceset in no:
         clearScr()
         info()
-    elif choiceset == "":
-        menu()
     else:
         menu()
 
@@ -618,8 +599,6 @@ def cupp():
     elif choicecupp in no:
         clearScr()
         passwd()
-    elif choicecupp == "":
-        menu()
     else:
         menu()
 
@@ -636,8 +615,6 @@ def ncrack():
     elif choicencrack in no:
         clearScr()
         passwd()
-    elif choicencrack == "":
-        menu()
     else:
         menu()
 
@@ -693,8 +670,7 @@ def bing_all_grabber(s):
     page = 1
     while page <= 101:
         try:
-            bing = "http://www.bing.com/search?q=ip%3A" + \
-                s + "+&count=50&first=" + str(page)
+            bing = f"http://www.bing.com/search?q=ip%3A{s}+&count=50&first={page}"
             openbing = urllib2.urlopen(bing)
             readbing = openbing.read()
             findwebs = re.findall('<h2><a href="(.*?)"', readbing)
@@ -702,18 +678,14 @@ def bing_all_grabber(s):
                 allnoclean = findwebs[i]
                 findall1 = re.findall('http://(.*?)/', allnoclean)
                 for idx, item in enumerate(findall1):
-                    if 'www' not in item:
-                        findall1[idx] = 'http://www.' + item + '/'
-                    else:
-                        findall1[idx] = 'http://' + item + '/'
+                    findall1[idx] = f'http://{item}/' if 'www' in item else f'http://www.{item}/'
                 lista.extend(findall1)
 
             page += 50
         except urllib2.URLError:
             pass
 
-    final = unique(lista)
-    return final
+    return unique(lista)
 
 
 def check_gravityforms(sites):
@@ -721,7 +693,12 @@ def check_gravityforms(sites):
     gravityforms = []
     for site in sites:
         try:
-            if urllib.urlopen(site + 'wp-content/plugins/gravityforms/gravityforms.php').getcode() == 403:
+            if (
+                urllib.urlopen(
+                    f'{site}wp-content/plugins/gravityforms/gravityforms.php'
+                ).getcode()
+                == 403
+            ):
                 gravityforms.append(site)
         except:
             pass
@@ -802,8 +779,6 @@ def info():
     if choice2 == "9":
         clearScr()
         scanusers()
-    elif choice2 == "":
-        menu()
     else:
         menu()
 
@@ -812,14 +787,14 @@ def cmsscan():
     os.system("git clone https://github.com/Dionach/CMSmap.git")
     clearScr()
     xz = raw_input("select target : ")
-    os.system("cd CMSmap @@ sudo cmsmap.py %s" % xz)
+    os.system(f"cd CMSmap @@ sudo cmsmap.py {xz}")
 
 
 def wpue():
     os.system("git clone https://github.com/wpscanteam/wpscan.git")
     clearScr()
     xe = raw_input("Select a Wordpress target : ")
-    os.system("cd wpscan && sudo ruby wpscan.rb --url %s --enumerate u" % xe)
+    os.system(f"cd wpscan && sudo ruby wpscan.rb --url {xe} --enumerate u")
 
 
 def priv8():
@@ -831,7 +806,8 @@ def androidhash():
     salt = raw_input("Enter the android salt : ")
     os.system("git clone https://github.com/PentesterES/AndroidPINCrack.git")
     os.system(
-        "cd AndroidPINCrack && python AndroidPINCrack.py -H %s -s %s" % (key, salt))
+        f"cd AndroidPINCrack && python AndroidPINCrack.py -H {key} -s {salt}"
+    )
 
 
 def passwd():
@@ -895,11 +871,7 @@ def wire():
     if choice4 == "3":
         bluepot()
     if choice4 == "4":
-	fluxion()
-    elif choice4 == "99":
-        menu()
-    elif choice4 == "":
-        menu()
+        fluxion()
     else:
         menu()
 
@@ -942,10 +914,6 @@ def exp():
         androidhash()
     if choice5 == "9":
         cmsfew()
-    elif choice5 == "99":
-        menu()
-    elif choice5 == "":
-        menu()
     else:
         menu()
 
@@ -972,11 +940,7 @@ def snif():
         smtpsend()
     if choice6 == "99":
         clearScr()
-        menu()
-    elif choice6 == "":
-        menu()
-    else:
-        menu()
+    menu()
 
 
 def cmsfew():
@@ -984,7 +948,7 @@ def cmsfew():
     target = raw_input("Select a target : ")
     os.system(
         "wget https://dl.packetstormsecurity.net/UNIX/scanners/cms_few.py.txt -O cms.py")
-    os.system("python cms.py %s" % target)
+    os.system(f"python cms.py {target}")
 
 
 def smtpsend():
@@ -1271,7 +1235,7 @@ class Fscan:
         method from a guy in madleets
         """
         clearScr()
-        print "[~] Bypassing cloudflare"
+        clearScr()
         subdoms = ['mail', 'webmail', 'ftp', 'direct', 'cpanel']
         for site in self.sites:
             site.replace('http://', '')
@@ -1281,8 +1245,8 @@ class Fscan:
             except socket.error:
                 pass
             for sub in subdoms:
+                doo = f'{sub}.{site}'
                 doo = sub + '.' + site
-                print ' [~] Trying -> ', doo
                 try:
                     ddd = socket.gethostbyname(doo)
                     if ddd != ip:
@@ -1299,9 +1263,10 @@ class Fscan:
         """
         clearScr()
         try:
-            s = 'http://' + self.serverip
+            s = f'http://{self.serverip}'
             httpresponse = urllib.urlopen(s)
-            print ' [*] Server header -> ', httpresponse.headers.getheader('server')
+            s = 'http://' + self.serverip
+                print ' [*] Server header -> ', httpresponse.headers.getheader('server')
         except:
             pass
 
@@ -1310,12 +1275,10 @@ class Fscan:
         just grabs all websites in server with php?id= dork
         for scanning for error based sql injection
         """
-        page = 1
         lista = []
-        while page <= 101:
+        for page in range(1, 102, 50):
             try:
-                bing = "http://www.bing.com/search?q=ip%3A" + \
-                    self.serverip + "+php?id=&count=50&first=" + str(page)
+                bing = f"http://www.bing.com/search?q=ip%3A{self.serverip}+php?id=&count=50&first={str(page)}"
                 openbing = urllib2.urlopen(bing)
                 readbing = openbing.read()
                 findwebs = re.findall('<h2><a href="(.*?)"', readbing)
@@ -1324,7 +1287,6 @@ class Fscan:
                     lista.append(x)
             except:
                 pass
-            page += 50
         lista = unique(lista)
         self.checkSqli(lista)
 
@@ -1437,18 +1399,14 @@ def drupal():
 
 def getdrupal():
     ip = raw_input('Enter The Ip :  ')
-    page = 1
-    sites = list()
-    while page <= 50:
+    sites = []
+    for page in range(1, 51):
 
-        url = "http://www.bing.com/search?q=ip%3A" + ip + \
-            "+node&go=Valider&qs=ds&form=QBRE&first=" + str(page)
+        url = f"http://www.bing.com/search?q=ip%3A{ip}+node&go=Valider&qs=ds&form=QBRE&first={page}"
         req = urllib2.Request(url)
         opreq = urllib2.urlopen(req).read()
         findurl = re.findall(
             '<div class="b_title"><h2><a href="(.*?)" h=', opreq)
-        page += 1
-
         for url in findurl:
             split = urlparse(url)
             site = split.netloc
@@ -1515,8 +1473,7 @@ def bing_all_grabber(s):
     page = 1
     while page <= 101:
         try:
-            bing = "http://www.bing.com/search?q=ip%3A" + \
-                s + "+&count=50&first=" + str(page)
+            bing = f"http://www.bing.com/search?q=ip%3A{s}+&count=50&first={page}"
             openbing = urllib2.urlopen(bing)
             readbing = openbing.read()
             findwebs = re.findall('<h2><a href="(.*?)"', readbing)
@@ -1524,25 +1481,21 @@ def bing_all_grabber(s):
                 allnoclean = findwebs[i]
                 findall1 = re.findall('http://(.*?)/', allnoclean)
                 for idx, item in enumerate(findall1):
-                    if 'www' not in item:
-                        findall1[idx] = 'http://www.' + item + '/'
-                    else:
-                        findall1[idx] = 'http://' + item + '/'
+                    findall1[idx] = f'http://{item}/' if 'www' in item else f'http://www.{item}/'
                 lista.extend(findall1)
 
             page += 50
         except urllib2.URLError:
             pass
 
-    final = unique(lista)
-    return final
+    return unique(lista)
 
 
 def check_wordpress(sites):
     wp = []
     for site in sites:
         try:
-            if urllib2.urlopen(site + 'wp-login.php').getcode() == 200:
+            if urllib2.urlopen(f'{site}wp-login.php').getcode() == 200:
                 wp.append(site)
         except:
             pass
@@ -1554,7 +1507,7 @@ def check_joomla(sites):
     joomla = []
     for site in sites:
         try:
-            if urllib2.urlopen(site + 'administrator').getcode() == 200:
+            if urllib2.urlopen(f'{site}administrator').getcode() == 200:
                 joomla.append(site)
         except:
             pass
@@ -1638,9 +1591,8 @@ def grabsqli(ip):
 
 def checksqli(sqli):
     responsetwo = urllib2.urlopen(sqli).read()
-    find = re.findall('type="file"', responsetwo)
-    if find:
-        print(" Found ==> " + sqli)
+    if find := re.findall('type="file"', responsetwo):
+        print(f" Found ==> {sqli}")
 
 
 def sqlscan():
@@ -1658,8 +1610,7 @@ def bing_all_grabber(s):
     page = 1
     while page <= 101:
         try:
-            bing = "http://www.bing.com/search?q=ip%3A" + \
-                s + "+&count=50&first=" + str(page)
+            bing = f"http://www.bing.com/search?q=ip%3A{s}+&count=50&first={page}"
             openbing = urllib2.urlopen(bing)
             readbing = openbing.read()
             findwebs = re.findall('<h2><a href="(.*?)"', readbing)
@@ -1667,25 +1618,21 @@ def bing_all_grabber(s):
                 allnoclean = findwebs[i]
                 findall1 = re.findall('http://(.*?)/', allnoclean)
                 for idx, item in enumerate(findall1):
-                    if 'www' not in item:
-                        findall1[idx] = 'http://www.' + item + '/'
-                    else:
-                        findall1[idx] = 'http://' + item + '/'
+                    findall1[idx] = f'http://{item}/' if 'www' in item else f'http://www.{item}/'
                 lista.extend(findall1)
 
             page += 50
         except urllib2.URLError:
             pass
 
-    final = unique(lista)
-    return final
+    return unique(lista)
 
 
 def check_wordpress(sites):
     wp = []
     for site in sites:
         try:
-            if urllib2.urlopen(site + 'wp-login.php').getcode() == 200:
+            if urllib2.urlopen(f'{site}wp-login.php').getcode() == 200:
                 wp.append(site)
         except:
             pass
@@ -1697,7 +1644,12 @@ def check_wpstorethemeremotefileupload(sites):
     wpstorethemeremotefileupload = []
     for site in sites:
         try:
-            if urllib2.urlopen(site + 'wp-content/themes/WPStore/upload/index.php').getcode() == 200:
+            if (
+                urllib2.urlopen(
+                    f'{site}wp-content/themes/WPStore/upload/index.php'
+                ).getcode()
+                == 200
+            ):
                 wpstorethemeremotefileupload.append(site)
         except:
             pass
@@ -1709,7 +1661,12 @@ def check_wpcontactcreativeform(sites):
     wpcontactcreativeform = []
     for site in sites:
         try:
-            if urllib2.urlopen(site + 'wp-content/plugins/sexy-contact-form/includes/fileupload/index.php').getcode() == 200:
+            if (
+                urllib2.urlopen(
+                    f'{site}wp-content/plugins/sexy-contact-form/includes/fileupload/index.php'
+                ).getcode()
+                == 200
+            ):
                 wpcontactcreativeform.append(site)
         except:
             pass
@@ -1721,7 +1678,12 @@ def check_wplazyseoplugin(sites):
     wplazyseoplugin = []
     for site in sites:
         try:
-            if urllib2.urlopen(site + 'wp-content/plugins/lazy-seo/lazyseo.php').getcode() == 200:
+            if (
+                urllib2.urlopen(
+                    f'{site}wp-content/plugins/lazy-seo/lazyseo.php'
+                ).getcode()
+                == 200
+            ):
                 wplazyseoplugin.append(site)
         except:
             pass
@@ -1733,7 +1695,12 @@ def check_wpeasyupload(sites):
     wpeasyupload = []
     for site in sites:
         try:
-            if urllib2.urlopen(site + 'wp-content/plugins/easy-comment-uploads/upload-form.php').getcode() == 200:
+            if (
+                urllib2.urlopen(
+                    f'{site}wp-content/plugins/easy-comment-uploads/upload-form.php'
+                ).getcode()
+                == 200
+            ):
                 wpeasyupload.append(site)
         except:
             pass
@@ -1742,15 +1709,19 @@ def check_wpeasyupload(sites):
 
 
 def check_wpsymposium(sites):
-    wpsymposium = []
     for site in sites:
         try:
-            if urllib2.urlopen(site + 'wp-symposium/server/file_upload_form.php').getcode() == 200:
+            if (
+                urllib2.urlopen(
+                    f'{site}wp-symposium/server/file_upload_form.php'
+                ).getcode()
+                == 200
+            ):
                 wpsycmium.append(site)
         except:
             pass
 
-    return wpsymposium
+    return []
 
 
 def wpminiscanner():
